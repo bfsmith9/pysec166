@@ -28,6 +28,7 @@ false = 0
 def login(userList):
     filename = "areas.txt"
     loadUsers(userList, filename)
+    # How to input with spaces after name?
     name = input("Please input your name: ")
     pw = input("Please input your password: ")
     if (userList[name]["Password"] == pw):
@@ -39,8 +40,14 @@ def login(userList):
 
 
 def enterReportingArea(name, users):
-    if (users[name]["Access_Level"] == "1"):
+    if ((users[name]["Access_Level"] == "1") or (users[name]["Access_Level"] == "2")):
         print ("You have now entered the Reporting application.")
+    else:
+        print("You do not have permission to use this application.")
+        
+def enterDevelopmentArea(name, users):
+    if ((users[name]["Access_Level"] == "2") or (users[name]["Access_Level"] == "3")):
+        print ("You have now entered the Devlopment application.")
     else:
         print("You do not have permission to use this application.")
     
@@ -55,7 +62,7 @@ def loadUsers(areas,filename):
             areas[row["Name"]] = item
 #            row = row.strip().split(",")
 #            areas.setdefault(row[0],{})[row[1]] = row[2]
-    print(areas)
+    # print(areas)
 
 
 def printMenu():
@@ -79,7 +86,9 @@ while menu_choice != "8":
     elif menu_choice == "0":
         printMenu()
     elif menu_choice == "2":
-        enterReportingArea(name, userList)    
+        enterReportingArea(name, userList) 
+    elif menu_choice == "3":
+        enterDevelopmentArea(name, userList)            
     elif menu_choice == "8":
         #exit
         pass
