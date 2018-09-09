@@ -22,16 +22,28 @@ true = 1
 false = 0
 
 # areas is the dictionary - top level
-# For each key in areas there will be an array
 
 
         
-def enterReportingArea(users):
+def login(userList):
+    filename = "areas.txt"
+    loadUsers(userList, filename)
     name = input("Please input your name: ")
+    pw = input("Please input your password: ")
+    if (userList[name]["Password"] == pw):
+        print("You are logged in, " + name)
+        return name
+    else:
+        print("Incorrect password. Exiting program.")
+        exit()
+
+
+def enterReportingArea(name, users):
     if (users[name]["Access_Level"] == "1"):
         print ("You have now entered the Reporting application.")
     else:
         print("You do not have permission to use this application.")
+    
 
 def loadUsers(areas,filename):
     with open(filename, 'r') as data_file:
@@ -56,6 +68,7 @@ def printMenu():
     print()
 
 userList = {}
+name = login(userList)
 menu_choice = 0
 printMenu()
 while menu_choice != "8":
@@ -65,8 +78,8 @@ while menu_choice != "8":
         printUsers(userList)
     elif menu_choice == "0":
         printMenu()
-    elif menu_choice == "9":
-        enterReportingArea(userList)    
+    elif menu_choice == "2":
+        enterReportingArea(name, userList)    
     elif menu_choice == "8":
         #exit
         pass
