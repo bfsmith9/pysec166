@@ -42,6 +42,9 @@ def remove_number(areas,name):
         del areas[name]
     else:
         print(name," was not found")
+        
+def enterReportingArea():
+    print("You have now entered the reporting area")
 
 #def loadUsers(areas,filename):
 #    in_file = open(filename,"r")
