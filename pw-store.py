@@ -1,18 +1,11 @@
 #! /usr/bin/env python3
 
-# ASSIGNMENT 1 - CS166
-# PROGRAM TO MANAGE PASSWORDS & ACCESS LEVELS FOR USERS
-# BARRY SMITH - SEPT 6, 2018
+#########################################################
+# ASSIGNMENT 1 - CS166                                  #
+# PROGRAM TO MANAGE PASSWORDS & ACCESS LEVELS FOR USERS #
+# BARRY SMITH - SEPT 11, 2018                           #
+#########################################################
 
-# STRATEGY - WHAT KIND OF DATA STRUCTURE?
-# Name is key to two items: pass, level.
-# areas is name of dictionary
-# areas->john is showing the key "john" in areas the areas dictionary.
-# john can point to the word "pass," which has "123" as its value, and to the word "level," which has 4 as its value.
-
-# So what is it? It's one dictionary, with keys that have person's names. Each name contains 2 items: 2 keys and their associated values, so each name has an add'l dictionary associated with it.
-# Or is it: areas: name->john, pass->bar, level->2???????
-# vs array: array: array[0]->john, [1]->bar, [2]->2????? So that's all sort of "one thing..." Not at all what I have above.
 
 import string
 import csv
@@ -20,11 +13,9 @@ import csv
 true = 1
 false = 0
 
-
-
-# FUNCTIONS AREA - NOTHING BUT FUNCTIONS!
+# FUNCTIONS AREA
 # ----------------------------------------
- # LOGIN FUNCTION When program starts, this is the first function,
+ # login function. When program starts, this is the first function,
  # where a user needs to login. A file in local storage contains a list
  # of names, passwords, and access-levels. This is read in before user
  # interaction begins.
@@ -33,9 +24,10 @@ def login(userList):
     loadUsers(userList, filename)
     # How to input with spaces after name?
     try:
-        name = input("Please input your name: ")
-        pw = input("Please input your password: ")
-
+        userNameInput = input("Please input your username: ")
+        name = userNameInput.strip()
+        userPasswordInput = input("Please input your password: ")
+        pw = userPasswordInput.strip()
         if (userList[name]["Password"] == pw):
             print("You are logged in, " + name)
             return name
@@ -46,23 +38,37 @@ def login(userList):
         print("That was not a valid username. Please try again. Exiting program")
         exit()
 
+# enterReportingArea function. Allows users to enter the lowest-level
+# "Reporting" area of app
+
 def enterReportingArea(name, users):
     if ((users[name]["Access_Level"] == "1") or (users[name]["Access_Level"] == "2") or (users[name]["Access_Level"] == "3")):
         print ("You have now entered the Reporting application.")
     else:
         print("You do not have permission to use this application.")
+
+# enterDevelopmentArea function. Allows users to enter the mid-level
+# "Development" area of app
         
 def enterDevelopmentArea(name, users):
     if ((users[name]["Access_Level"] == "1") or (users[name]["Access_Level"] == "2")):
-        print ("You have now entered the Devlopment application.")
+        print ("You have now entered the Development application.")
     else:
         print("You do not have permission to use this application.")
-    
+ 
+# enterFinanceArea function. Allows users to enter the high-level
+# "Finance" area of app
+   
 def enterFinanceArea(name, users):
     if (users[name]["Access_Level"] == "1"):
         print ("You have now entered the Finance application.")
     else:
         print("You do not have permission to use this application.")
+
+# loadUsers function. This is executed immediately upon program startup.
+# It loads existing users names, passwords, and access levels from a 
+# csv file stored locally. If a user is not in this file, the program
+# will terminate.
 
 def loadUsers(areas,filename):
     try:
@@ -79,7 +85,7 @@ def loadUsers(areas,filename):
         exit()
 
 
-
+# printMenu function. Central navigation menu for users
 def printMenu():
     print('1. Menu')
     print('2. Enter Reporting Application')
@@ -90,7 +96,7 @@ def printMenu():
     print()
 
 
-# MAIN EXECUTION AREA
+# MAIN EXECUTION AREA -----------------------------------
 
 userList = {}
 filename = "areas.txt"
