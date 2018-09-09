@@ -40,17 +40,22 @@ def login(userList):
 
 
 def enterReportingArea(name, users):
-    if ((users[name]["Access_Level"] == "1") or (users[name]["Access_Level"] == "2")):
+    if ((users[name]["Access_Level"] == "1") or (users[name]["Access_Level"] == "2") or (users[name]["Access_Level"] == "3")):
         print ("You have now entered the Reporting application.")
     else:
         print("You do not have permission to use this application.")
         
 def enterDevelopmentArea(name, users):
-    if ((users[name]["Access_Level"] == "2") or (users[name]["Access_Level"] == "3")):
+    if ((users[name]["Access_Level"] == "1") or (users[name]["Access_Level"] == "2")):
         print ("You have now entered the Devlopment application.")
     else:
         print("You do not have permission to use this application.")
     
+def enterFinanceArea(name, users):
+    if (users[name]["Access_Level"] == "1"):
+        print ("You have now entered the Finance application.")
+    else:
+        print("You do not have permission to use this application.")
 
 def loadUsers(areas,filename):
     with open(filename, 'r') as data_file:
@@ -60,9 +65,6 @@ def loadUsers(areas,filename):
             item[row["Password"]] = row["pass"]
             item[row["Access_Level"]] = row["number"]
             areas[row["Name"]] = item
-#            row = row.strip().split(",")
-#            areas.setdefault(row[0],{})[row[1]] = row[2]
-    # print(areas)
 
 
 def printMenu():
@@ -82,13 +84,15 @@ while menu_choice != "8":
   try:
     menu_choice = input("Type in a number (1-8, 0 for menu): ")
     if menu_choice == "1":
-        printUsers(userList)
+        printMenu()
     elif menu_choice == "0":
         printMenu()
     elif menu_choice == "2":
         enterReportingArea(name, userList) 
     elif menu_choice == "3":
-        enterDevelopmentArea(name, userList)            
+        enterDevelopmentArea(name, userList)     
+    elif menu_choice == "4":
+        enterFinanceArea(name, userList)           
     elif menu_choice == "8":
         #exit
         pass
