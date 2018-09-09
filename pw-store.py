@@ -25,10 +25,11 @@ false = 0
 # For each key in areas there will be an array
 
 def printUsers(users):
-    print("Users:")
-    for x in users.keys():
-        for y in x.keys():
-            print("Name: ",x," \tArea: ",x[y]["Password"] )
+ 
+    for key, value in users.items():
+        print("Name: " + str(key))   
+        print("Access Level: " + str(value["Access_Level"]))
+
     print()
 
 def lookup_number(areas, name):
