@@ -16,28 +16,35 @@
 
 import string
 import csv
-#from collections import defaultdict
 
 true = 1
 false = 0
 
-# areas is the dictionary - top level
 
 
+# FUNCTIONS AREA - NOTHING BUT FUNCTIONS!
+# ----------------------------------------
+ # LOGIN FUNCTION When program starts, this is the first function,
+ # where a user needs to login. A file in local storage contains a list
+ # of names, passwords, and access-levels. This is read in before user
+ # interaction begins.
         
 def login(userList):
-    filename = "areas.txt"
     loadUsers(userList, filename)
     # How to input with spaces after name?
-    name = input("Please input your name: ")
-    pw = input("Please input your password: ")
-    if (userList[name]["Password"] == pw):
-        print("You are logged in, " + name)
-        return name
-    else:
-        print("Incorrect password. Exiting program.")
-        exit()
+    try:
+        name = input("Please input your name: ")
+        pw = input("Please input your password: ")
 
+        if (userList[name]["Password"] == pw):
+            print("You are logged in, " + name)
+            return name
+        else:
+            print("Incorrect password. Exiting program.")
+            exit()
+    except KeyError:
+        print("That was not a valid username. Please try again. Exiting program")
+        exit()
 
 def enterReportingArea(name, users):
     if ((users[name]["Access_Level"] == "1") or (users[name]["Access_Level"] == "2") or (users[name]["Access_Level"] == "3")):
@@ -58,13 +65,19 @@ def enterFinanceArea(name, users):
         print("You do not have permission to use this application.")
 
 def loadUsers(areas,filename):
-    with open(filename, 'r') as data_file:
-        data = csv.DictReader(data_file, delimiter=",")
-        for row in data:
-            item = areas.get(row["Name"], dict())
-            item[row["Password"]] = row["pass"]
-            item[row["Access_Level"]] = row["number"]
-            areas[row["Name"]] = item
+    try:
+        with open(filename, 'r') as data_file:
+            data = csv.DictReader(data_file, delimiter=",")
+            for row in data:
+                item = areas.get(row["Name"], dict())
+                item[row["Password"]] = row["pass"]
+                item[row["Access_Level"]] = row["number"]
+                areas[row["Name"]] = item
+    except FileNotFoundError:
+        print("File not found! Please check your directory for the {} file.".format(filename))
+        print("Program terminating.")
+        exit()
+
 
 
 def printMenu():
@@ -76,7 +89,12 @@ def printMenu():
 
     print()
 
+
+# MAIN EXECUTION AREA
+
 userList = {}
+filename = "areas.txt"
+
 name = login(userList)
 menu_choice = 0
 printMenu()
