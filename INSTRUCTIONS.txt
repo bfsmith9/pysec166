@@ -1,0 +1,7 @@
+# INSTRUCTIONS FOR RUNNING PW-STORE PROGRAM
+
+This program can be run (given an existing python3 application) by simply executing pw-store.py, by typing python3 pw-store.py.
+
+The usernames and passwords can be seen in the "areas.txt" file, by simply opening it with your favorite text editor. Within the areas file the access levels associated with each user can also be seen.
+
+Once running the program, the menu will be self-explanatory.
