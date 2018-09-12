@@ -7,7 +7,6 @@
 #########################################################
 
 
-import string
 import csv
 
 true = 1
@@ -15,10 +14,10 @@ false = 0
 
 # FUNCTIONS AREA
 # ----------------------------------------
- # login function. When program starts, this is the first function,
- # where a user needs to login. A file in local storage contains a list
- # of names, passwords, and access-levels. This is read in before user
- # interaction begins.
+# login function. When program starts, this is the first function,
+# where a user needs to login. A file in local storage contains a list
+# of names, passwords, and access-levels. This is read in before user
+# interaction begins.
         
 def login(userList):
     loadUsers(userList, filename)
@@ -105,24 +104,24 @@ name = login(userList)
 menu_choice = 0
 printMenu()
 while menu_choice != "8":
-  try:
-    menu_choice = input("Type in a number (1-8, 0 for menu): ")
-    if menu_choice == "1":
-        printMenu()
-    elif menu_choice == "0":
-        printMenu()
-    elif menu_choice == "2":
-        enterReportingArea(name, userList) 
-    elif menu_choice == "3":
-        enterDevelopmentArea(name, userList)     
-    elif menu_choice == "4":
-        enterFinanceArea(name, userList)           
-    elif menu_choice == "8":
-        #exit
-        pass
-    else:
-        printMenu()
-  except SyntaxError:
-      print("That was not a number.")
+    try:
+        menu_choice = input("Type in a number (1-8, 0 for menu): ")
+        if menu_choice == "1":
+            printMenu()
+        elif menu_choice == "0":
+            printMenu()
+        elif menu_choice == "2":
+            enterReportingArea(name, userList) 
+        elif menu_choice == "3":
+            enterDevelopmentArea(name, userList)     
+        elif menu_choice == "4":
+            enterFinanceArea(name, userList)           
+        elif menu_choice == "8":
+            #exit
+            pass
+        else:
+            printMenu()
+    except SyntaxError:
+        print("That was not a number.")
   
 print("Goodbye")
