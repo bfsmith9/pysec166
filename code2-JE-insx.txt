@@ -1,0 +1,12 @@
+# JIM EDDY'S INSTRUCTIONS FOR ASSIGNMENT 2
+Assignment 2.0
+Write a Python program to simulate** a buffer overflow, then implement input validation to prevent it. There are two parts to this assignment:
+
+1) The program should display a welcome message and prompt the user for a username. Create a buffer overflow condition by allowing a user to input more data than the size of the allocated memory (causing the program to crash). 
+
+2) Implement input validation to mitigate the overflow vulnerability. Check that the username entered has a minimum length of 8 characters and a maximum of 25 characters. If the user enters a username length outside those limits, return an error message and prompt the user to re-enter the username. 
+
+Please submit a compressed folder containing two python files (one for part 1, and another for part 2) associated with your assignment, as well as instructions for testing your program.
+
+**Note: I am using Python since it is a prerequisite for this course. A language such as C would provide a real buffer overflow, thus this exercise is designed to build a conceptual understanding of the condition.
+dukhat:code2-buffer-overflow bfsmith9$ 
