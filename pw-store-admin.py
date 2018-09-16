@@ -14,6 +14,8 @@
 # Or is it: areas: name->john, pass->bar, level->2???????
 # vs array: array: array[0]->john, [1]->bar, [2]->2????? So that's all sort of "one thing..." Not at all what I have above.
 
+# "ADMIN FUNCTIONS" - Some of these functions are from a different program. Either leave them or just pull them out for some other kinds of functionality later.
+
 import string
 import csv
 #from collections import defaultdict
@@ -25,42 +27,31 @@ false = 0
 # For each key in areas there will be an array
 
 def printUsers(users):
-    print("Users:")
-    for x in users.keys():
-        for y in x.keys():
-            print("Name: ",x," \tArea: ",x[y]["Password"] )
+ 
+    for key, value in users.items():
+        print("Name: " + str(key))   
+        print("Access Level: " + str(value["Access_Level"]))
+
     print()
 
-def lookup_number(areas, name):
+def lookupArea(areas, name):
     if areas.has_key(name):
         return "The number is "+areas[name]
     else:
         return name+" was not found"
 
-def remove_number(areas,name):
+def removeAccess(areas,name):
     if areas.has_key(name):
         del areas[name]
     else:
         print(name," was not found")
-
-#def loadUsers(areas,filename):
-#    in_file = open(filename,"r")
-#    while true:
-#        in_line=in_file.readline()
-#        if in_line == "":
-#            break
-#        in_line = in_line[:-1]
-#        [name,pass,auth_code] = in_line.split(',')
-#        areas[name[0]] = pass
-#        areas[name[1]] = auth_code
-#    in_file.close()
-
-#def loadUsers(areas,filename):
-#    with open(filename, 'r') as data_file:
-#        data_file.next()
-#        for row in data_file:
-#            row = row.strip().split(",")
-#            areas.setdefault(row[0],{})[row[1]] = row[2]
+        
+def enterReportingArea(users):
+    name = input("Please input your name: ")
+    if (users[name]["Access_Level"] == "1"):
+        print ("You have now entered the Reporting application.")
+    else:
+        print("You do not have permission to use this application.")
 
 def loadUsers(areas,filename):
     with open(filename, 'r') as data_file:
@@ -75,10 +66,11 @@ def loadUsers(areas,filename):
     print(areas)
 
 def saveUsers(areas,filename):
-    out_file = open(filename, "w")
-    for x in areas.keys():
-        out_file.write(x+","+areas[x]+"\n")
-    out_file.close()
+    pass
+#    out_file = open(filename, "w")
+#    for x in areas.keys():
+#        out_file.write(x+","+areas[x]+"\n")
+#    out_file.close()
 
 def printMenu():
     print('1. Print users')
@@ -89,6 +81,8 @@ def printMenu():
     print('6. Save users')
     print('7. (or 0) Menu')
     print('8. Quit')
+    print('9. Enter Reporting Application')
+    print('10. Log on')
     print()
 
 userList = {}
@@ -107,11 +101,11 @@ while menu_choice != "8":
     elif menu_choice == "3":
         print("Remove Name and Area")
         name = input("Name: ")
-        remove_number(userList,name)
+        removeAccess(userList,name)
     elif menu_choice == "4":
         print("Lookup Name")
         name = input("Name: ")
-        print(lookup_number(userList,name))
+        print(lookupArea(userList,name))
     elif menu_choice == "5":
         filename = "areas.txt"
         loadUsers(userList,filename)
@@ -122,6 +116,8 @@ while menu_choice != "8":
         printMenu()
     elif menu_choice == "0":
         printMenu()
+    elif menu_choice == "9":
+        enterReportingArea(userList)    
     elif menu_choice == "8":
         #exit
         pass
