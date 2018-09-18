@@ -25,7 +25,14 @@ def login(userList):
     try:
         userNameInput = input("Please input your username: ")
         name = userNameInput.strip()
+        
+        # SIMULATED BUFFER OVERFLOW - CRASH
+        if (len(name) > 25):
+            print("Error - the program has crashed.")
+            exit()
+        
         userPasswordInput = input("Please input your password: ")
+        
         pw = userPasswordInput.strip()
         if (userList[name]["Password"] == pw):
             print("You are logged in, " + name)
