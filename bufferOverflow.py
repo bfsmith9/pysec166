@@ -107,6 +107,7 @@ def printMenu():
 userList = {}
 filename = "areas.txt"
 
+print("Welcome!")
 name = login(userList)
 menu_choice = 0
 printMenu()
