@@ -1,7 +1,14 @@
-# INSTRUCTIONS FOR RUNNING PWSTORE PROGRAM
+# INSTRUCTIONS FOR RUNNING BUFFEROVERFLOW PROGRAMS
+(Barry Smith - CS166 - SEPT 18, 2018)
 
-This program can be run (given an existing python3 application) by simply executing pwStore.py, by typing python3 pwStore.py.
+These programs can be run by simply typing:
 
-The usernames and passwords can be seen in the "areas.txt" file, by simply opening it with your favorite text editor. Within the areas file the access levels associated with each user can also be seen.
+python3 bufferOverflow.py 
 
-Once running the program, the menu will be self-explanatory.
+and
+
+python3 bufferOverflowSafe.py
+
+These programs are simply modifications of the program from the previous assignment. The program bufferOverflow.py, when given a username of over 25 letters, will simulate a crash and exit. The program bufferOverflowSafe.py will monitor the length of the username field - any username over 25 letters will warn the user of the limited username length and exit.
+
+Otherwise, once running the programs, the menus will be self-explanatory.
