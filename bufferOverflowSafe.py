@@ -25,10 +25,12 @@ def login(userList):
     try:
         userNameInput = input("Please input your username: ")
         name = userNameInput.strip()
-        if (len(name) > 25):
-            print("The username must be less than 25 characters.")
-            print("Please try again - program will now exit.")
-            exit()
+        # HANDLING SIMULATED BUFFER OVERFLOW
+        while (len(name) > 25):
+            print("Username must be less than 25 characters - please try again.")
+            userNameInput = input("Please input your username: ")
+            name = userNameInput.strip()
+            
         userPasswordInput = input("Please input your password: ")
         pw = userPasswordInput.strip()
         if (userList[name]["Password"] == pw):
@@ -104,6 +106,7 @@ def printMenu():
 userList = {}
 filename = "areas.txt"
 
+print("Welcome!")
 name = login(userList)
 menu_choice = 0
 printMenu()
