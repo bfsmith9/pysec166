@@ -9,7 +9,6 @@
 
 import csv
 import random
-from random import shuffle
 
 true = 1
 false = 0
