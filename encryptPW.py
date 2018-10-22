@@ -10,10 +10,16 @@
 import csv
 import random
 
-
-
 true = 1
 false = 0
+
+# Actual alphabet - upper- and lowercase
+alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX0123456789"
+
+# Here is a randomized alphabet. Each character in this alphabet
+# will be associated with a character in the actual alphabet.
+# That will be the encryption used.
+randomizedAlpha = "osWBnrX8GwlAb1O4dvN2RcEgik9j7L0JztqhUmPyFpK35DxQMVCT6aSHIfeu"
 
 # FUNCTIONS AREA
 # ----------------------------------------

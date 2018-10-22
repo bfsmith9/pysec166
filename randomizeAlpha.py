@@ -12,11 +12,13 @@ import random
 
 def randomizeAlphabet():
     alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX0123456789"
-    regAlphaList = list(alphabet)
+    # Make a list out of alphabet
     alphaList = list(alphabet)
-    random.shuffle(alphaList)
-    mixed = alphaList
-  
+    # Make another list out of alphabet called mixed
+    mixed = list(alphabet)
+    # Shuffle list mixed
+    random.shuffle(mixed)  
+    
     # Kind of weird to me. Does this just turn a list into string?
     print(*mixed, sep=',')
     print(mixed.index('h'))
@@ -24,11 +26,14 @@ def randomizeAlphabet():
     print(numVal)
     for x in mixed:
         #
+        # Print value in mixed
         print(x)
+        # Print that mixed value's index
         print(mixed.index(x))
         #print(alphaList.index(x))
         #print(mixed[x])
-        print(regAlphaList[mixed.index(x)])
+        # Print what's in the alphaList at the same index
+        print(alphaList[mixed.index(x)])
         print()
     # print(alphabet[numVal])      
     mixed = ''.join(mixed)
