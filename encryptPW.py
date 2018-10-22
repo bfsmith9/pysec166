@@ -57,6 +57,7 @@ def encryptPassword(pw):
     random.shuffle(mixed)
     mixed = ''.join(mixed)
     print(mixed)
+    
 
 def enterReportingArea(name, users):
     if ((users[name]["Access_Level"] == "1") or (users[name]["Access_Level"] == "2") or (users[name]["Access_Level"] == "3")):
