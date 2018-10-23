@@ -2,3 +2,6 @@ Name,Password,pass,Access_Level,number
 john,Password,baptiste,Access_Level,3
 mary,Password,contrary,Access_Level,2
 toni,Password,beloved,Access_Level,1
+jeff,Password,cat,Access_Level,1
+lisa,Password,fish,Access_Level,1 
+tali,Password,gold,Access_Level,1 
