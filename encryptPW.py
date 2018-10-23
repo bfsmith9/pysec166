@@ -49,10 +49,10 @@ def login(userList, randomizedAlpha):
             userList[name]["Password"] = newUserPasswordInput.strip()
             userList[name]["Access_Level"] = "1"
             pw = newUserPasswordInput.strip()
-            encryptWord(pw, randomizedAlpha)
+            epw = encryptWord(pw, randomizedAlpha)
             
             
-            line = name + ",Password," + pw + ",Access_Level,1 "
+            line = name + ",Password," + epw + ",Access_Level,1 "
             print(line)
             with open(filename, 'a') as data_file:
             
@@ -78,8 +78,10 @@ def login(userList, randomizedAlpha):
         
         
         
-        
-        if (userList[name]["Password"] == pw):
+        checkWord = userList[name]["Password"]
+        dCheckWord = decryptWord(checkWord, randomizedAlpha)
+        if (dCheckWord == pw):
+        #if (userList[name]["Password"] == pw):
             print("You are logged in, " + name)
             return name
             
