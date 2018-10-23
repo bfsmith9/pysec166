@@ -1,15 +1,15 @@
 #! /usr/bin/env python3
 
 #########################################################
-# ASSIGNMENT 1 - CS166                                  #
-# PROGRAM TO MANAGE PASSWORDS & ACCESS LEVELS FOR USERS #
-# BARRY SMITH - SEPT 11, 2018                           #
+# ASSIGNMENT 5 - CS166                                  #
+# ADD ENCRYPTION TO INTRANET PROGRAM                    #
+# BARRY SMITH - OCTOBER 23, 2018                        #
 #########################################################
 
 
 import csv
 import random
-from randomizeAlpha import encryptedWord
+#from randomizeAlpha import encryptedWord
 
 true = 1
 false = 0
@@ -43,9 +43,15 @@ def login(userList):
             
         userPasswordInput = input("Please input your password: ")
         pw = userPasswordInput.strip()
+        
+        
+        
+        
+        
+        
+        
         if (userList[name]["Password"] == pw):
             print("You are logged in, " + name)
-            encryptPassword(pw)
             return name
             
         else:
@@ -105,6 +111,24 @@ def loadUsers(areas,filename):
                 item[row["Password"]] = row["pass"]
                 item[row["Access_Level"]] = row["number"]
                 areas[row["Name"]] = item
+    except FileNotFoundError:
+        print("File not found! Please check your directory for the {} file.".format(filename))
+        print("Program terminating.")
+        exit()
+        
+def addUsers(areas,filename):
+    
+    try:
+        with open(filename, 'a', newline='') as data_file:
+            data = csv.DictWriter(data_file, delimiter=",")
+            
+            
+            for row in data:
+                item = areas.append(row["Name"], dict())
+                item[row["Password"]] = row["pass"]
+                item[row["Access_Level"]] = row["number"]
+                areas[row["Name"]] = item
+                data.writerow(row)
     except FileNotFoundError:
         print("File not found! Please check your directory for the {} file.".format(filename))
         print("Program terminating.")
@@ -177,6 +201,7 @@ def decryptWord(encryptedWord, randomizedAlpha):
 
 # MAIN EXECUTION AREA -----------------------------------
 
+# Create a userList dictionary - empty at first
 userList = {}
 filename = "areas.txt"
 plainWord = "cat"
@@ -209,4 +234,6 @@ while menu_choice != "8":
 encryptedWord = encryptWord(plainWord, randomizedAlpha)
 print("Yo " + encryptedWord)
 decryptWord(encryptedWord, randomizedAlpha)
+addUsers(userList, filename)
+
 print("Goodbye")
