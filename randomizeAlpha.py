@@ -10,7 +10,15 @@
 
 import random
 
-def randomizeAlphabet():
+word = "cat"
+plainNumCode = []
+encryptedNumCode = []
+
+def randomizeAlphabet(word):
+    
+    
+    plainNumCode = []
+    encryptedNumCode = []
     alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX0123456789"
     # Make a list out of alphabet
     alphaList = list(alphabet)
@@ -30,8 +38,7 @@ def randomizeAlphabet():
         print(x)
         # Print that mixed value's index
         print(mixed.index(x))
-        #print(alphaList.index(x))
-        #print(mixed[x])
+
         # Print what's in the alphaList at the same index
         print(alphaList[mixed.index(x)])
         print()
@@ -39,7 +46,12 @@ def randomizeAlphabet():
     mixed = ''.join(mixed)
     print(mixed)
     
+    wordCharList = list(word)
+    for y in wordCharList:
+        plainNumCode.append(alphaList.index(y))
+    print(plainNumCode)
+    for z in plainNumCode:
+        encryptedNumCode.append(mixed[z])
+    print(encryptedNumCode)
     
-    
-    
-randomizeAlphabet()
+randomizeAlphabet(word)
