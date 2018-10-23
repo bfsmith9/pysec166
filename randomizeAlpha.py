@@ -10,16 +10,20 @@
 
 import random
 
-word = "cat"
+plainWord = "cat"
 plainNumCode = []
+encryptedWord = []
 encryptedNumCode = []
 
-def randomizeAlphabet(word):
+def randomizeAlphabet(plainWord):
     
+    print("Here's the plainWord we're starting with: " + plainWord)
     
     plainNumCode = []
-    encryptedNumCode = []
+    encryptedWord = []
+    decryptedWord = []
     alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX0123456789"
+    print(alphabet)
     # Make a list out of alphabet
     alphaList = list(alphabet)
     # Make another list out of alphabet called mixed
@@ -28,30 +32,49 @@ def randomizeAlphabet(word):
     random.shuffle(mixed)  
     
     # Kind of weird to me. Does this just turn a list into string?
-    print(*mixed, sep=',')
-    print(mixed.index('h'))
-    numVal = mixed.index('h')
-    print(numVal)
-    for x in mixed:
+    # print(*mixed, sep=',')
+    # print(mixed.index('h'))
+    # numVal = mixed.index('h')
+    # print(numVal)
+    # for x in mixed:
         #
         # Print value in mixed
-        print(x)
+        # print(x)
         # Print that mixed value's index
-        print(mixed.index(x))
+        # print(mixed.index(x))
 
         # Print what's in the alphaList at the same index
-        print(alphaList[mixed.index(x)])
-        print()
+        # print(alphaList[mixed.index(x)])
+        # print()
     # print(alphabet[numVal])      
     mixed = ''.join(mixed)
     print(mixed)
     
-    wordCharList = list(word)
+    # Make a list out of the plainWord
+    wordCharList = list(plainWord)
+    
+    # Put the plainWord into its numeric form - from the position in regular alphabet order
     for y in wordCharList:
         plainNumCode.append(alphaList.index(y))
     print(plainNumCode)
     for z in plainNumCode:
-        encryptedNumCode.append(mixed[z])
-    print(encryptedNumCode)
+        encryptedWord.append(mixed[z])
+    print(encryptedWord)
+    encryptedWord = ''.join(encryptedWord)
+    print(encryptedWord)
     
-randomizeAlphabet(word)
+    # Make a list out of the plainWord
+    encryptedCharList = list(encryptedWord)
+    
+    # Put the plainWord into its numeric form - from the position in regular alphabet order
+    mixedList = list(mixed)
+    for y in encryptedCharList:
+        encryptedNumCode.append(mixedList.index(y))
+    print(encryptedNumCode)
+    for z in encryptedNumCode:
+        decryptedWord.append(alphabet[z])
+    print(decryptedWord)
+    decryptedWord = ''.join(decryptedWord)
+    print(decryptedWord)    
+    
+randomizeAlphabet(plainWord)
