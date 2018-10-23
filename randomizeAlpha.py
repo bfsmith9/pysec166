@@ -63,10 +63,10 @@ def randomizeAlphabet(plainWord):
     encryptedWord = ''.join(encryptedWord)
     print(encryptedWord)
     
-    # Make a list out of the plainWord
+    # Make a list out of the encrypted word
     encryptedCharList = list(encryptedWord)
     
-    # Put the plainWord into its numeric form - from the position in regular alphabet order
+    # Put the encrypted word into its numeric form - from the position in regular alphabet order
     mixedList = list(mixed)
     for y in encryptedCharList:
         encryptedNumCode.append(mixedList.index(y))

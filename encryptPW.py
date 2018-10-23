@@ -9,12 +9,13 @@
 
 import csv
 import random
+from randomizeAlpha import encryptedWord
 
 true = 1
 false = 0
 
 # Actual alphabet - upper- and lowercase
-alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX0123456789"
+# alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX0123456789"
 
 # Here is a randomized alphabet. Each character in this alphabet
 # will be associated with a character in the actual alphabet.
@@ -121,11 +122,64 @@ def printMenu():
     print()
 
 
+def encryptWord(plainWord, randomizedAlpha):  
+    print("Here's the plainWord we're starting with: " + plainWord)
+    plainNumCode = []
+    encryptedWord = []
+    
+    # Actual alphabet - upper- and lowercase, numbers
+    alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX0123456789"
+
+    print(alphabet)
+    print(randomizedAlpha)
+    
+    # Make a list out of the plainWord
+    wordCharList = list(plainWord)
+    alphaList = list(alphabet)
+
+    
+    # Put the plainWord into its numeric form - from the position in regular alphabet order
+    for y in wordCharList:
+        plainNumCode.append(alphaList.index(y))
+    print(plainNumCode)
+    for z in plainNumCode:
+        encryptedWord.append(randomizedAlpha[z])
+    print(encryptedWord)
+    encryptedWord = ''.join(encryptedWord)
+    print(encryptedWord)
+    return encryptedWord
+
+def decryptWord(encryptedWord, randomizedAlpha):
+    print("Here's the encrypted word we're starting with: " + encryptedWord)
+    decryptedWord = []
+    encryptedNumCode = []
+
+    # Actual alphabet - upper- and lowercase, numbers
+    alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX0123456789"
+
+    print(alphabet)
+    print(randomizedAlpha) 
+    
+    # Make a list out of the encrypted word
+    encryptedCharList = list(encryptedWord)
+    # Put the encrypted word into its numeric form - from the position in regular alphabet order
+    randomizedAlphaList = list(randomizedAlpha)
+    
+    for y in encryptedCharList:
+        encryptedNumCode.append(randomizedAlphaList.index(y))
+    print(encryptedNumCode)
+    for z in encryptedNumCode:
+        decryptedWord.append(alphabet[z])
+    print(decryptedWord)
+    decryptedWord = ''.join(decryptedWord)
+    print(decryptedWord)
+    return decryptedWord         
+
 # MAIN EXECUTION AREA -----------------------------------
 
 userList = {}
 filename = "areas.txt"
-oneTimePW = "gevhqwxipbtx"
+plainWord = "cat"
 
 print("Welcome!")
 name = login(userList)
@@ -151,5 +205,8 @@ while menu_choice != "8":
             printMenu()
     except SyntaxError:
         print("That was not a number.")
-  
+
+encryptedWord = encryptWord(plainWord, randomizedAlpha)
+print("Yo " + encryptedWord)
+decryptWord(encryptedWord, randomizedAlpha)
 print("Goodbye")
