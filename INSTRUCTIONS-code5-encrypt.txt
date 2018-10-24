@@ -1,0 +1,10 @@
+# INSTRUCTIONS FOR RUNNING BUFFEROVERFLOW PROGRAMS
+(Barry Smith - CS166 - OCT 23, 2018)
+
+This program can be run by simply typing:
+
+python3 encryptPW.py
+
+This program is simply a modification of the program from the previous assignment. The program will encrypt a password entered for a new user and write that to file areas.txt. Two names that can be tried are username jean, password barn, and username harry, password dog (because you can't see the actual passwords in the file). 
+
+Otherwise, once running the program, the menus will be self-explanatory.

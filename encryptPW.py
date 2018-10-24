@@ -50,7 +50,8 @@ def login(userList, randomizedAlpha):
             userList[name]["Access_Level"] = "1"
             pw = newUserPasswordInput.strip()
             epw = encryptWord(pw, randomizedAlpha)
-            
+            userList[name]["Password"] = epw
+
             
             line = name + ",Password," + epw + ",Access_Level,1 "
             print(line)
@@ -72,12 +73,7 @@ def login(userList, randomizedAlpha):
             
         userPasswordInput = input("Please input your password: ")
         pw = userPasswordInput.strip()
-        
-        
-        
-        
-        
-        
+               
         checkWord = userList[name]["Password"]
         dCheckWord = decryptWord(checkWord, randomizedAlpha)
         if (dCheckWord == pw):
