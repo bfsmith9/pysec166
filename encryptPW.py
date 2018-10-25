@@ -59,17 +59,7 @@ def login(userList, randomizedAlpha):
             
                 data_file.write(line)
                 data_file.write('\n')
-            
-            
-            
-            
-            
-    # except FileNotFoundError:
-    #     print("File not found! Please check your directory for the {} file.".format(filename))
-    #    print("Program terminating.")
-    #    exit()
-            
-            
+               
             
         userPasswordInput = input("Please input your password: ")
         pw = userPasswordInput.strip()
@@ -145,84 +135,6 @@ def loadUsers(areas,filename):
         print("Program terminating.")
         exit()
 
-def loadUsers2(areas,filename):
-    try:
-        with open(filename, 'r') as data_file:
-            data = csv.DictReader(data_file, delimiter=",")
-            for row in data:
-                print(row["No"], row["Name"], row["Password"], row["Access_Level"])
-                #areas{"No"}
-            if "john" in data:
-                print("yes")
-            else:
-                print("no")    
-                
-    except FileNotFoundError:
-        print("File not found! Please check your directory for the {} file.".format(filename))
-        print("Program terminating.")
-        exit()
-        
-def addUsers(areas2, filename):
-    
-    try:
-        with open(filename, 'a') as data_file:
-            #data = csv.DictWriter(data_file, fieldnames=fieldnames, delimiter=",")
-            csvwriter = csv.writer(data_file, delimiter = ',')
-            
-            for row in areas2:
-                #Scsvwriter.writerow(row, areas2[row]["Password"], areas2[row]["Access_Level"])
-                for subrow in row:
-                    csvwriter.writerows(row["Password"])
-
-
-    except FileNotFoundError:
-        print("File not found! Please check your directory for the {} file.".format(filename))
-        print("Program terminating.")
-        exit()
-
-def addUsers2(areas2, filename):
-    
-    try:
-        with open(filename, 'a') as data_file:
-            #data = csv.DictWriter(data_file, fieldnames=fieldnames, delimiter=",")
-            #csvwriter = csv.writer(data_file, delimiter = ',')
-            fields = ['Name', 'Password', 'pass', 'Access_Level', 'number']
-            data = csv.DictWriter(data_file, fields)
-
-            
-            for key in areas2:
-                #Scsvwriter.writerow(row, areas2[row]["Password"], areas2[row]["Access_Level"])
-                #for row in {'Name': key}
-                #data.writerow(row["Password"])
-                #row = {'Name': key}
-                #row.update(val)
-                #data.writerow(row)
-                #data.writeheader()
-                data.writerow({field: areas2[key].get(field) or key for field in fields})
-    except FileNotFoundError:
-        print("File not found! Please check your directory for the {} file.".format(filename))
-        print("Program terminating.")
-        exit()
-
-def addUsers3(filename):
-    
-    line = "newname,Password,newpass,Access_Level,newnumber"
-    try:
-        with open(filename, 'a') as data_file:
-            
-            data_file.write(line)
-            data_file.write('\n')
-            
-            
-            
-            
-            
-    except FileNotFoundError:
-        print("File not found! Please check your directory for the {} file.".format(filename))
-        print("Program terminating.")
-        exit()
-
-
 # printMenu function. Central navigation menu for users
 def printMenu():
     print('1. Menu')
@@ -291,7 +203,7 @@ def decryptWord(encryptedWord, randomizedAlpha):
 
 # Create a userList dictionary - empty at first
 userList = {}
-filename = "areas.txt"
+filename = "users.txt"
 plainWord = "cat"
 
 print("Welcome!")
@@ -319,18 +231,7 @@ while menu_choice != "8":
     except SyntaxError:
         print("That was not a number.")
 
-encryptedWord = encryptWord(plainWord, randomizedAlpha)
-print("Yo " + encryptedWord)
-decryptWord(encryptedWord, randomizedAlpha)
-
-#newNames = ["helen"]
-#newPasswords = ["bonhomme"]
-#newLevels = ["2"]
-
-#fieldnames = ['Name', 'Password', 'Access_Level']
-#addUsers(newNames, newPasswords, newLevels, filename)
-filename2 = "newareas.txt"
-userList2 = {'jamie': {'Password':'luigi333', 'Access_Level':'2'}}
-addUsers3(filename2)
+# encryptedWord = encryptWord(plainWord, randomizedAlpha)
+# decryptWord(encryptedWord, randomizedAlpha)
 
 print("Goodbye")
