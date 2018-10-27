@@ -49,3 +49,43 @@ Technical requirements:
 - Reasonable amount of error handling.
 
 Please submit a compressed folder containing all of the files associated with your assignment, as well as a description of your encryption algorithm (pseudocode) and instructions for testing your program.
+
+## JIM EDDY'S INSTRUCTIONS FOR ASSIGNMENT 6
+
+Assignment 6.0
+
+### PART 1 (10%): Hashing
+
+Generate the (hexidecimal) hash using the identified algorithm for the following passwords (apostrophes not included):
+
+- Use md5 to generate the hash for the password: 'letMeIn'
+- Use md5 to generate the hash for the password: 'admin'
+- Use sha1 to generate the hash for the password: 'gr8tPW'
+- Use sha256 to generate the hash for the password: 'hello123'
+- Use sha512 to generate the hash for the password: 'v@ry$ecURE!'
+
+### PART 2 (15%): Salting
+
+- Add the salt 'cyber' to the end of the md5 hash for the password: 'helpdesk'
+- Generate the md5 hash of the salt 'cyber' and add it to the end of the md5 hash for the password: 'helpdesk'
+- Generate the md5 hash of the password + salt (which is 'helpdesk' concatenated with the salt 'cyber')
+- Generate a pseudeo-random salt, add it to the end of the password 'helpdesk' and generate the md5 hash of the password + hash combination. Explain how you generated the pseudo-random salt.
+- Respond: How does salting passwords make them more secure?
+
+### PART 3 (75%): Cracking
+
+Write a password cracking program in python that reads in the wordlist passwords provided here: wordlist800.txt
+ and searches for the original plaintext password that matches the following (unsalted) md5 password hash: 'cc8b1415557f58abf2e2fa83c2ea6c91'
+
+To get you started, here is the basic python to generate an md5 hash:
+
+import hashlib
+pw = 'testing'
+
+h = hashlib.md5(pw.encode()).hexdigest()
+
+print(h)
+
+
+Submit a compressed folder of your code as well as a screenshot demonstrating you successfully cracked the password. 
+
