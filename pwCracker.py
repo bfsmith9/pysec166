@@ -71,11 +71,13 @@ for element in data:
         print("This matches " + passwordHash[0])
         numberAttempts = numberAttempts + 1
         print("numberAttempts: ", numberAttempts)
+        print("Program now terminating.")
         break
     else:
         print("No dice - " + hashResult)
         numberAttempts = numberAttempts + 1
         print("numberAttempts: ",  numberAttempts)
+        print("---")
         
 
 
