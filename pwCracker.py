@@ -7,9 +7,9 @@
 #########################################################
 
 
-import hashlib, sys
+import hashlib, sys, time
 
-hash_file = "hashes_source.txt
+hash_file = "hashes_source.txt"
 wordlist = "wordlist800.txt"
 
 # read hash from hash file
