@@ -13,6 +13,7 @@ hash_file = "hashes_source.txt"
 wordlist = "wordlist800.txt"
 passwordHash = []
 data = []
+numberAttempts = 0
 
 # read hash from hash file
 
@@ -67,9 +68,14 @@ for element in data:
     if (hashResult == passwordHash[0]):
         print("Hello, what have we here?")
         print("The word " + element + " has the md5digest " + hashResult)
-        print("This matches ")
+        print("This matches " + passwordHash[0])
+        numberAttempts = numberAttempts + 1
+        print("numberAttempts: " + numberAttempts)
+        break
     else:
         print("No dice - " + hashResult)
+        numberAttempts = numberAttempts + 1
+        print("numberAttempts: " + numberAttempts)
         
 
 
