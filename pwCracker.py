@@ -70,12 +70,12 @@ for element in data:
         print("The word " + element + " has the md5digest " + hashResult)
         print("This matches " + passwordHash[0])
         numberAttempts = numberAttempts + 1
-        print("numberAttempts: " + numberAttempts)
+        print("numberAttempts: ", numberAttempts)
         break
     else:
         print("No dice - " + hashResult)
         numberAttempts = numberAttempts + 1
-        print("numberAttempts: " + numberAttempts)
+        print("numberAttempts: ",  numberAttempts)
         
 
 
