@@ -81,14 +81,6 @@ def login(userList, randomizedAlpha):
 # enterReportingArea function. Allows users to enter the lowest-level
 # "Reporting" area of app
 
-def encryptPassword(pw):
-    print("Here is your password" + pw)
-    alphabet = "abcdefghijklmnopqrstuvwxyz"
-    mixed = list(alphabet)
-    random.shuffle(mixed)
-    mixed = ''.join(mixed)
-    print(mixed)
-    
 
 def enterReportingArea(name, users):
     if ((users[name]["Access_Level"] == "1") or (users[name]["Access_Level"] == "2") or (users[name]["Access_Level"] == "3")):
