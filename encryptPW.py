@@ -8,7 +8,9 @@
 
 
 import csv
-import random
+# import random
+from randomSalt import randomizeWord
+
 #from randomizeAlpha import encryptedWord
 
 true = 1
@@ -189,7 +191,13 @@ def decryptWord(encryptedWord, randomizedAlpha):
     print(decryptedWord)
     decryptedWord = ''.join(decryptedWord)
     print(decryptedWord)
-    return decryptedWord         
+    return decryptedWord
+
+def hashEncrypt(plainWord, salt):
+    print("Here's a plain old word: " + plainWord)
+    
+def hashDecypt(hashedWord, salt):
+    print("Here's a hashed word " + hashedWord)         
 
 # MAIN EXECUTION AREA -----------------------------------
 
@@ -197,6 +205,8 @@ def decryptWord(encryptedWord, randomizedAlpha):
 userList = {}
 filename = "users.txt"
 plainWord = "cat"
+alpha = "abcdefghijklmnopqrstuvwxyz"
+
 
 print("Welcome!")
 name = login(userList,randomizedAlpha)
@@ -227,3 +237,4 @@ while menu_choice != "8":
 # decryptWord(encryptedWord, randomizedAlpha)
 
 print("Goodbye")
+randomizeWord(alpha)
