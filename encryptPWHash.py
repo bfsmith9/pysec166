@@ -8,7 +8,8 @@
 
 
 import csv
-# import random
+import re
+
 from randomSalt import randomizeWord
 from hashFunction import hashPassword
 
@@ -43,7 +44,7 @@ def login(userList):
             newUserPasswordInput = input("Please enter a new password \n")
             print(newUserPasswordInput)
             # PASSWORD REVIEW
-            while(len(newUserPasswordInput) < 8):
+            while( (len(newUserPasswordInput) < 8) or ( (len(newUserPasswordInput) > 25) ) ):
                 print("Password has to be between 8 & 25 characters - please try again.")
                 newUserPasswordInput = input("Please enter a new password \n")
 
