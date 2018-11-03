@@ -7,15 +7,17 @@
 #########################################################
 
 import hashlib
+# from randomSalt import randomizeWord
+
 
 def hashPassword(password, salt):
     print(password)
     print(salt)
-    hash = hashlib.sha512(password.encode()).hexdigest()
-    print(hash)
+    hashString = hashlib.sha512(password.encode()).hexdigest()
+    print(hashString)
     hashedSalt = hashlib.sha512(salt.encode()).hexdigest()
     print(hashedSalt)
-    passwordPlusSalt = hash + hashedSalt
+    passwordPlusSalt = hashString + hashedSalt
     print(passwordPlusSalt)
     hashCombo = hashlib.sha512(passwordPlusSalt.encode()).hexdigest()
     print(hashCombo)

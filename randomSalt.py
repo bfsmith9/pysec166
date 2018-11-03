@@ -11,10 +11,10 @@
 import random
 
 plainWord = "cat"
-alpha = "abcdefghijklmnopqrstuvwxyz"
 
-def randomizeWord(alpha):
-    
+def randomizeWord():
+    alpha = "abcdefghijklmnopqrstuvwxyz"
+
     print("Here's the plainWord we're starting with: " + alpha)
 
     
@@ -24,5 +24,6 @@ def randomizeWord(alpha):
     random.shuffle(alpha)  
     mixed = ''.join(alpha) 
     print(mixed)
+    return mixed
 
-randomizeWord(alpha)
+randomizeWord()

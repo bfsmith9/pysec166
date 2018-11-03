@@ -10,19 +10,13 @@
 import csv
 # import random
 from randomSalt import randomizeWord
+from hashFunction import hashPassword
 
 #from randomizeAlpha import encryptedWord
 
 true = 1
 false = 0
 
-# Actual alphabet - upper- and lowercase
-# alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX0123456789"
-
-# Here is a randomized alphabet. Each character in this alphabet
-# will be associated with a character in the actual alphabet.
-# That will be the encryption used.
-randomizedAlpha = "osWBnrX8GwlAb1O4dvN2RcEgik9j7L0JztqhUmPyFpK35DxQMVCT6aSHIfeu"
 
 # FUNCTIONS AREA
 # ----------------------------------------
@@ -31,8 +25,9 @@ randomizedAlpha = "osWBnrX8GwlAb1O4dvN2RcEgik9j7L0JztqhUmPyFpK35DxQMVCT6aSHIfeu"
 # of names, passwords, and access-levels. This is read in before user
 # interaction begins.
         
-def login(userList, randomizedAlpha):
+def login(userList):
     # At first, userList is a blank dictionary
+    pwSalt = randomizeWord()
     loadUsers(userList, filename)
     # How to input with spaces after name?
     try:
@@ -47,15 +42,22 @@ def login(userList, randomizedAlpha):
         if (not(name in userList)):
             newUserPasswordInput = input("Please enter a new password \n")
             print(newUserPasswordInput)
+            # PASSWORD REVIEW
+            while(len(newUserPasswordInput) < 8):
+                print("Password has to be between 8 & 25 characters - please try again.")
+                newUserPasswordInput = input("Please enter a new password \n")
+
             userList[name] = {}
-            userList[name]["Password"] = newUserPasswordInput.strip()
-            userList[name]["Access_Level"] = "1"
+            # userList[name]["Password"] = newUserPasswordInput.strip()
             pw = newUserPasswordInput.strip()
-            epw = encryptWord(pw, randomizedAlpha)
-            userList[name]["Password"] = epw
+            # epw = encryptWord(pw)
+            hashedPW = hashPassword(pw, pwSalt)
+            userList[name]["Password"] = hashedPW
+            userList[name]["Access_Level"] = "1"
+            userList[name]["Salt"] = pwSalt
 
             
-            line = name + ",Password," + epw + ",Access_Level,1 "
+            line = name + ",Password," + hashedPW + ",Access_Level,1," + "Salt," + pwSalt
             print(line)
             with open(filename, 'a') as data_file:
             
@@ -67,8 +69,9 @@ def login(userList, randomizedAlpha):
         pw = userPasswordInput.strip()
                
         checkWord = userList[name]["Password"]
-        dCheckWord = decryptWord(checkWord, randomizedAlpha)
-        if (dCheckWord == pw):
+        chkSalt = userList[name]["Salt"]
+        dCheckWord = hashPassword(pw, chkSalt)
+        if (dCheckWord == checkWord):
         #if (userList[name]["Password"] == pw):
             print("You are logged in, " + name)
             return name
@@ -212,7 +215,7 @@ alpha = "abcdefghijklmnopqrstuvwxyz"
 
 
 print("Welcome!")
-name = login(userList,randomizedAlpha)
+name = login(userList)
 menu_choice = 0
 printMenu()
 while menu_choice != "8":
@@ -240,4 +243,4 @@ while menu_choice != "8":
 # decryptWord(encryptedWord, randomizedAlpha)
 
 print("Goodbye")
-randomizeWord(alpha)
+# randomizeWord(alpha)
