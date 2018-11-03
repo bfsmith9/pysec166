@@ -2,8 +2,8 @@
 
 #########################################################
 # ASSIGNMENT 7 - CS166                                  #
-# ADD ENCRYPTION TO INTRANET PROGRAM                    #
-# BARRY SMITH - OCTOBER 23, 2018                        #
+# ADD HASH ENCRYPTION TO INTRANET PROGRAM                    #
+# BARRY SMITH - NOVEMBER 6, 2018                        #
 #########################################################
 
 
@@ -53,7 +53,7 @@ def login(userList):
             # epw = encryptWord(pw)
             hashedPW = hashPassword(pw, pwSalt)
             userList[name]["Password"] = hashedPW
-            userList[name]["Access_Level"] = "1"
+            userList[name]["Access_Level"] = "3"
             userList[name]["Salt"] = pwSalt
 
             
