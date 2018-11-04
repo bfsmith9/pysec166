@@ -13,8 +13,6 @@ import re
 from randomSalt import randomizeWord
 from hashFunction import hashPassword
 
-#from randomizeAlpha import encryptedWord
-
 true = 1
 false = 0
 
@@ -40,18 +38,23 @@ def login(userList):
             userNameInput = input("Please input your username: ")
             name = userNameInput.strip()
         
+        # NEW USER
         if (not(name in userList)):
-            newUserPasswordInput = input("Please enter a new password \n")
+            newUserPasswordInput = input("Please enter a new password: ")
             print(newUserPasswordInput)
+            
             # PASSWORD REVIEW
-            while( (len(newUserPasswordInput) < 8) or ( (len(newUserPasswordInput) > 25) ) ):
-                print("Password has to be between 8 & 25 characters - please try again.")
-                newUserPasswordInput = input("Please enter a new password \n")
+            while( (len(newUserPasswordInput) < 8) or  (len(newUserPasswordInput) > 25) or (letterCheck(newUserPasswordInput) == false ) or  (numberCheck(newUserPasswordInput) == false )  ):
+                print("Password requirements: your password must:")
+                print("be between 8 & 25 characters long;")
+                print("have at least one letter;")
+                print("have at least one number.")
+                print("Please try again.")
+                
+                newUserPasswordInput = input("Please enter a new password: ")
 
             userList[name] = {}
-            # userList[name]["Password"] = newUserPasswordInput.strip()
             pw = newUserPasswordInput.strip()
-            # epw = encryptWord(pw)
             hashedPW = hashPassword(pw, pwSalt)
             userList[name]["Password"] = hashedPW
             userList[name]["Access_Level"] = "3"
@@ -66,14 +69,13 @@ def login(userList):
                 data_file.write('\n')
                
             
-        userPasswordInput = input("Please input your password: ")
+        userPasswordInput = input("Please input or re-input your password, " + name + ": ")
         pw = userPasswordInput.strip()
                
         checkWord = userList[name]["Password"]
         chkSalt = userList[name]["Salt"]
         dCheckWord = hashPassword(pw, chkSalt)
         if (dCheckWord == checkWord):
-        #if (userList[name]["Password"] == pw):
             print("You are logged in, " + name)
             return name
             
@@ -89,7 +91,7 @@ def login(userList):
 
 
 def enterReportingArea(name, users):
-    if ((users[name]["Access_Level"] == "1") or (users[name]["Access_Level"] == "2") or (users[name]["Access_Level"] == "3")):
+    if ((users[name]["Access_Level"] == "1") or (users[name]["Access_Level"] == "2") or (users[name]["Access_Level"] == "3") ):
         print ("You have now entered the Reporting application.")
     else:
         print("You do not have permission to use this application.")
@@ -128,8 +130,8 @@ def loadUsers(areas,filename):
                 item[row["Salt"]] = row["saltString"]
 
                 areas[row["Name"]] = item
-                print(areas.keys())
-                print(areas.values())
+                # print(areas.keys())
+                # print(areas.values())
     
     except FileNotFoundError:
         print("File not found! Please check your directory for the {} file.".format(filename))
@@ -146,65 +148,15 @@ def printMenu():
 
     print()
 
+def numberCheck(pw):
+    return bool(re.search(r'\d', pw))
 
-def encryptWord(plainWord, randomizedAlpha):  
-    print("Here's the plainWord we're starting with: " + plainWord)
-    plainNumCode = []
-    encryptedWord = []
+def letterCheck(pw):
+    return bool(re.search('[a-zA-Z]', pw))
+
+# BOTTOM OF FUNCTION AREA -------------------------------
     
-    # Actual alphabet - upper- and lowercase, numbers
-    alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX0123456789"
-
-    print(alphabet)
-    print(randomizedAlpha)
     
-    # Make a list out of the plainWord
-    wordCharList = list(plainWord)
-    alphaList = list(alphabet)
-
-    
-    # Put the plainWord into its numeric form - from the position in regular alphabet order
-    for y in wordCharList:
-        plainNumCode.append(alphaList.index(y))
-    print(plainNumCode)
-    for z in plainNumCode:
-        encryptedWord.append(randomizedAlpha[z])
-    print(encryptedWord)
-    encryptedWord = ''.join(encryptedWord)
-    print(encryptedWord)
-    return encryptedWord
-
-def decryptWord(encryptedWord, randomizedAlpha):
-    print("Here's the encrypted word we're starting with: " + encryptedWord)
-    decryptedWord = []
-    encryptedNumCode = []
-
-    # Actual alphabet - upper- and lowercase, numbers
-    alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX0123456789"
-
-    print(alphabet)
-    print(randomizedAlpha) 
-    
-    # Make a list out of the encrypted word
-    encryptedCharList = list(encryptedWord)
-    # Put the encrypted word into its numeric form - from the position in regular alphabet order
-    randomizedAlphaList = list(randomizedAlpha)
-    
-    for y in encryptedCharList:
-        encryptedNumCode.append(randomizedAlphaList.index(y))
-    print(encryptedNumCode)
-    for z in encryptedNumCode:
-        decryptedWord.append(alphabet[z])
-    print(decryptedWord)
-    decryptedWord = ''.join(decryptedWord)
-    print(decryptedWord)
-    return decryptedWord
-
-def hashEncrypt(plainWord, salt):
-    print("Here's a plain old word: " + plainWord)
-    
-def hashDecypt(hashedWord, salt):
-    print("Here's a hashed word " + hashedWord)         
 
 # MAIN EXECUTION AREA -----------------------------------
 

@@ -11,16 +11,16 @@ import hashlib
 
 
 def hashPassword(password, salt):
-    print(password)
-    print(salt)
+    # print(password)
+    # print(salt)
     hashString = hashlib.sha512(password.encode()).hexdigest()
-    print(hashString)
+    # print(hashString)
     hashedSalt = hashlib.sha512(salt.encode()).hexdigest()
-    print(hashedSalt)
+    # print(hashedSalt)
     passwordPlusSalt = hashString + hashedSalt
-    print(passwordPlusSalt)
+    # print(passwordPlusSalt)
     hashCombo = hashlib.sha512(passwordPlusSalt.encode()).hexdigest()
-    print(hashCombo)
+    # print(hashCombo)
     
     return hashCombo
 
