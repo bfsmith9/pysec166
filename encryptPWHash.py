@@ -15,6 +15,7 @@ from hashFunction import hashPassword
 
 true = 1
 false = 0
+newUserFlag = 0
 
 
 # FUNCTIONS AREA
@@ -40,6 +41,7 @@ def login(userList):
         
         # NEW USER
         if (not(name in userList)):
+            newUserFlag = 1
             newUserPasswordInput = input("Please enter a new password: ")
             print(newUserPasswordInput)
             
@@ -61,13 +63,20 @@ def login(userList):
             userList[name]["Salt"] = pwSalt
 
             
-            line = name + ",Password," + hashedPW + ",Access_Level,1," + "Salt," + pwSalt
+            line = name + ",Password," + hashedPW + ",Access_Level,3," + "Salt," + pwSalt
             # print(line)
-            with open(filename, 'a') as data_file:
+            try:
+                with open(filename, 'a') as data_file:
             
-                data_file.write(line)
-                data_file.write('\n')
-               
+                    data_file.write(line)
+                    data_file.write('\n')
+            
+            except FileNotFoundError:
+                print("File not found! Please check your directory for the {} file.".format(filename))
+                print("Program terminating.")
+                exit()
+            
+            
             
         userPasswordInput = input("Please input or re-input your password, " + name + ": ")
         pw = userPasswordInput.strip()
