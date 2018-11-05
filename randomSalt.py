@@ -15,7 +15,7 @@ plainWord = "cat"
 def randomizeWord():
     alpha = "abcdefghijklmnopqrstuvwxyz"
 
-    print("Here's the plainWord we're starting with: " + alpha)
+    # print("Here's the plainWord we're starting with: " + alpha)
 
     
     # Make a list out of word
@@ -23,7 +23,7 @@ def randomizeWord():
     # Shuffle list mixed
     random.shuffle(alpha)  
     mixed = ''.join(alpha) 
-    print(mixed)
+    # print(mixed)
     return mixed
 
 randomizeWord()

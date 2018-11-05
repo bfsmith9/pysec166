@@ -62,7 +62,7 @@ def login(userList):
 
             
             line = name + ",Password," + hashedPW + ",Access_Level,1," + "Salt," + pwSalt
-            print(line)
+            # print(line)
             with open(filename, 'a') as data_file:
             
                 data_file.write(line)
