@@ -25,7 +25,7 @@ newUserFlag = 0
 # of names, passwords, and access-levels. This is read in before user
 # interaction begins.
         
-def login(userList):
+def login(userList, newUserFlag):
     # At first, userList is a blank dictionary
     pwSalt = randomizeWord()
     loadUsers(userList, filename)
@@ -55,12 +55,19 @@ def login(userList):
                 
                 newUserPasswordInput = input("Please enter a new password: ")
 
-            userList[name] = {}
+            # userList[name] = {}
             pw = newUserPasswordInput.strip()
             hashedPW = hashPassword(pw, pwSalt)
             userList[name]["Password"] = hashedPW
             userList[name]["Access_Level"] = "3"
             userList[name]["Salt"] = pwSalt
+            print(userList[name]["Password"])
+            print(userList[name]["Access_Level"])
+
+            print(userList[name]["Salt"])
+
+            print(userList["ernie"]["Access_Level"])
+
 
             
             line = name + ",Password," + hashedPW + ",Access_Level,3," + "Salt," + pwSalt
@@ -76,31 +83,42 @@ def login(userList):
                 print("Program terminating.")
                 exit()
             
+            return name, userList
+            loadUsers(userList, filename)
             
-            
-        userPasswordInput = input("Please input (re-input for new users) password: ")
-        pw = userPasswordInput.strip()
+        if (newUserFlag == 0):
+            userPasswordInput = input("Please input your password (new users - re-input your password): ")
+            pw = userPasswordInput.strip()
                
-        checkWord = userList[name]["Password"]
-        chkSalt = userList[name]["Salt"]
-        dCheckWord = hashPassword(pw, chkSalt)
-        if (dCheckWord == checkWord):
-            print("You are logged in, " + name)
-            return name
-            
-        else:
-            print("Incorrect password. Exiting program.")
-            exit()
+            checkWord = userList[name]["Password"]
+            chkSalt = userList[name]["Salt"]
+            dCheckWord = hashPassword(pw, chkSalt)
+            if (dCheckWord == checkWord):
+                print("You are logged in, " + name)
+                return name
+                
+            else:
+                print("Incorrect password. Exiting program.")
+                exit()
     except KeyError:
         print("That was not a valid username. Please try again. Exiting program")
         exit()
+    userList
+    return userList, name
 
 # enterReportingArea function. Allows users to enter the lowest-level
 # "Reporting" area of app
 
 
-def enterReportingArea(name, users):
-    if ((users[name]["Access_Level"] == "1") or (users[name]["Access_Level"] == "2") or (users[name]["Access_Level"] == "3") ):
+def enterReportingArea(name, userList):
+    print(userList["ernie"]["Access_Level"])
+
+    #print(userList[name]["Password"])
+    print(userList[name]["Access_Level"])
+
+    print(userList[name]["Salt"])
+
+    if ((userList[name]["Access_Level"] == "1") or (userList[name]["Access_Level"] == "2") or (userList[name]["Access_Level"] == "3") ):
         print ("You have now entered the Reporting application.")
     else:
         print("You do not have permission to use this application.")
@@ -108,8 +126,8 @@ def enterReportingArea(name, users):
 # enterDevelopmentArea function. Allows users to enter the mid-level
 # "Development" area of app
         
-def enterDevelopmentArea(name, users):
-    if ((users[name]["Access_Level"] == "1") or (users[name]["Access_Level"] == "2")):
+def enterDevelopmentArea(name, userList):
+    if ((userList[name]["Access_Level"] == "1") or (userList[name]["Access_Level"] == "2")):
         print ("You have now entered the Development application.")
     else:
         print("You do not have permission to use this application.")
@@ -117,8 +135,8 @@ def enterDevelopmentArea(name, users):
 # enterFinanceArea function. Allows users to enter the high-level
 # "Finance" area of app
    
-def enterFinanceArea(name, users):
-    if (users[name]["Access_Level"] == "1"):
+def enterFinanceArea(name, userList):
+    if (userList[name]["Access_Level"] == "1"):
         print ("You have now entered the Finance application.")
     else:
         print("You do not have permission to use this application.")
@@ -177,9 +195,13 @@ alpha = "abcdefghijklmnopqrstuvwxyz"
 
 
 print("Welcome!")
-name = login(userList)
+name = login(userList, newUserFlag)
+print(name)
 menu_choice = 0
 printMenu()
+loadUsers(userList, filename)
+print(userList[name]["Password"])
+
 while menu_choice != "8":
     try:
         menu_choice = input("Type in a number (1-8, 0 for menu): ")
