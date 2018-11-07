@@ -1,6 +1,8 @@
 # INSTRUCTIONS FOR HASH-ENCRYPTION INTRANET CODE 
 (Barry Smith - CS166 - NOV 6, 2018)
 
+(NOTE: As requested, a description of SHA-512 algorithm is provided at the bottom of these instructions.)
+
 This program can be run by simply typing:
 
 python3 encryptPWHash.py
@@ -11,4 +13,7 @@ Otherwise, once running the program, the menus will be self-explanatory. New nam
 
 Passwords are checked for at least one digit, one number, at least eight characters, and no more than 25 characters.
 
-Included files are the main program encryptPWHash.py, the user file usersWithSalts, and new functions in two separate, additional files, randomSalt.py and hashFunction.py. The salts and encrypted passwords can be seen in the user file.
+Included files are the main program encryptPWHash.py, the user file usersWithSalts, and new functions in two separate, additional files, randomSalt.py and hashFunction.py. The salts and encrypted passwords can be seen in the user file. In randomSalt.py can be seen the method by which I use python's "random" library to create a pseduo-random salt.
+
+# DESCRIPTION OF THE SHA-512 ALGORITHM
+SHA-512 is built from the SHA-2 algorithm, which was developed by the U.S. government (specifically, the NSA) as a revision of SHA-1, which in turn was designed as an improvement to the MD5 algorithm because of the latter's growing lack of security in the context of increasingly powerful hardware. SHA-512, then, creates a 512-bit digest, as opposed to the shortest digest created by the SHA-2 family of algorithms, SHA-224. SHA-512 uses 64-bit words. SHA-2's usage today has become critical to encryption because a collision has been discovered in SHA-1, and thus is now considered insecure.
