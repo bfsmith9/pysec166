@@ -1,0 +1,14 @@
+# INSTRUCTIONS FOR HASH-ENCRYPTION INTRANET CODE 
+(Barry Smith - CS166 - NOV 6, 2018)
+
+This program can be run by simply typing:
+
+python3 encryptPWHash.py
+
+This program is a modification of the program from the previous assignment. The program will encrypt a password entered for a new user and write that to file usersWithSalts.txt. Two names that can be used that already exist in the file are username bert, password shaw5hank, and username ernie, password red3mption.
+
+Otherwise, once running the program, the menus will be self-explanatory. New names and passwords can be added, which will be written to the file. All passwords are written to the file after getting hashed, then concatanated with a hashed, random salt, and finally the whole string of two hashes is hashed one more time. Likewise, passwords are checked from the main code by going through the same process and checking them against the file.
+
+Passwords are checked for at least one digit, one number, at least eight characters, and no more than 25 characters.
+
+Included files are the main program encryptPWHash.py, the user file usersWithSalts, and new functions in two separate, additional files, randomSalt.py and hashFunction.py. The salts and encrypted passwords can be seen in the user file.
