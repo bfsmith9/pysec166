@@ -89,3 +89,19 @@ print(h)
 
 Submit a compressed folder of your code as well as a screenshot demonstrating you successfully cracked the password. 
 
+## JIM EDDY'S INSTRUCTIONS FOR ASSIGNMENT 7
+
+Assignment 7.0
+
+In this assignment, you will enhance the intranet system from Assignment 5.0. You will generate a pseudo-random salt, and replace the encryption algorithm you developed with the cryptographic hash function SHA-512, and store a salted & hashed password and the  salt used in the csv (or txt) file, along with the username and access level. To authenticate a registered user, you will modify the functionality to encrypt the password entered by the user and compare it to what is stored in the csv (or txt) file.
+
+### Technical requirements:
+
+- Plaintext usernames, pseudo-random salt, hashed/salted passwords, and access level stored in a csv (or txt) file.
+- As was required in Assignment 5.0, your system has the functionality for a new user to register and choose a username and password (set new user access level at your 'least privileged' level by default)
+- Encrypt the password the user enters using the SHA-512 algorithm
+- As was required in Assignment 5.0, add input validation to require the password length to be a minimum of 8 characters and a maximum of 25 characters. If the user enters a password length outside those limits, return an error message and prompt the user to re-enter the password. 
+- As was required in Assignment 5.0, add input validation to require the user to have at least one number and at least one letter in the password
+- Reasonable amount of error handling.
+
+Please submit a compressed folder containing all of the files associated with your assignment, as well as a general description of the SHA-512 algorithm and instructions for testing your program.
